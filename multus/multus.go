@@ -481,6 +481,12 @@ func cmdDel(args *skel.CmdArgs, exec invoke.Exec, kubeClient k8s.KubeClient) err
 		}
 		// First delegate is always the master plugin
 		in.Delegates[0].MasterPlugin = true
+
+		for _, conf := in.Delegates {
+			if conf.Plugins != nil && len(conf.Plugins) > 0 && conf.Plugins[0].Type != "" {
+				conf.ConfListPlugin =  true
+			}
+		}
 	}
 
 	// unset the network status annotation in apiserver, only in case Multus as kubeconfig
