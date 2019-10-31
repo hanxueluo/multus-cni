@@ -98,7 +98,8 @@ lint: $(GOLANGCI_LINT)
 $(GOLANGCI_LINT):
 	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(BIN_DIR) v1.16.0
 
-test: pre-build
+test:
+e2e-test: pre-build
 	@export GOPATH=$(PWD)/gopath; umask 0; cd $${GOPATH}/src/$(ROOT);                  \
 		go test -v -covermode=count -coverprofile=coverage.out ./...
 
