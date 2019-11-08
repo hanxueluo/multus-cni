@@ -93,10 +93,10 @@ build: build-local
 
 # more info about `GOGC` env: https://github.com/golangci/golangci-lint#memory-usage-of-golangci-lint
 lint: $(GOLANGCI_LINT)
-	@GOGC=5 $(GOLANGCI_LINT) run
+	@$(GOLANGCI_LINT) run
 
 $(GOLANGCI_LINT):
-	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(BIN_DIR) v1.16.0
+	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s -- -b $(BIN_DIR) v1.20.1
 
 test:
 e2e-test: pre-build
@@ -120,7 +120,7 @@ build-linux: pre-build
 	  -e GOARCH=amd64                                                                  \
 	  -e GOPATH=/go                                                                    \
 	  -e SHELLOPTS=$(SHELLOPTS)                                                        \
-	  $(BASE_REGISTRY)/golang:1.12.9-stretch                                           \
+	  $(BASE_REGISTRY)/golang:1.12.12-stretch                                          \
 	    /bin/bash -c 'for target in $(TARGETS); do                                     \
 	      go build -i -v -o $(OUTPUT_DIR)/$${target} -p $(CPUS)                        \
 	        -ldflags "-s -w -X $(ROOT)/pkg/version.VERSION=$(VERSION)                  \
