@@ -23,3 +23,5 @@ require (
 	k8s.io/klog v1.0.0
 	k8s.io/kubernetes v1.13.0
 )
+
+replace gopkg.in/intel/multus-cni.v3 => github.com/caicloud/multus-cni v1.0.9-0.20201229081749-812e347cadba
